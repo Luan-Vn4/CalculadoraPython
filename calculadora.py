@@ -1,7 +1,10 @@
 from tkinter import *
 
-janela = Tk()
-janela.geometry('320x300')
+root = Tk()
+root.geometry('350x500')
+frame = Frame(root, height=50, width=50)
+frame.grid()
 
 
-janela.mainloop()
+
+root.mainloop()
