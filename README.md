@@ -1,1 +1,1 @@
-# CalculadoraPython
+# Calculadora_PyQt
