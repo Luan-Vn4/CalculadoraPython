@@ -7,7 +7,7 @@ class MainWindow(QtWidgets.QWidget):
         super().__init__()
 
         # Window settings
-        self.resize(500, 600)
+        self.resize(400, 600)
         self.setWindowIcon(QtGui.QIcon("calculator.png"))
 
 
@@ -27,7 +27,7 @@ class MainWindow(QtWidgets.QWidget):
         # Buttons
         button_inf = {
             "%": (0, 0, lambda: self.buttonToDisplay("%")),
-            "x²": (0, 1, lambda: self.buttonToDisplay("x²")),
+            "x²": (0, 1, lambda: self.buttonToDisplay("²")),
             "C": (0, 2, self.display.clear),
             "←": (0, 3, self.backspace),
             "(": (1, 0, lambda: self.buttonToDisplay("(")),
@@ -49,7 +49,7 @@ class MainWindow(QtWidgets.QWidget):
             "00": (5, 0, lambda: self.buttonToDisplay("00")),
             "0": (5, 1, lambda: self.buttonToDisplay("0")),
             ".": (5, 2, lambda: self.buttonToDisplay(".")),
-            "=": (5, 3, lambda: self.buttonToDisplay("=")),
+            "=": (5, 3, self.calculate),
         }
         for key, value in button_inf.items():
             _row, _column, _function = value
@@ -66,9 +66,23 @@ class MainWindow(QtWidgets.QWidget):
     def backspace(self):
         currentText = self.display.toPlainText()
         self.display.setPlainText(currentText[0: len(currentText) - 1])
+        self.display.moveCursor(QtGui.QTextCursor.MoveOperation.End)
 
-def openWindow():
+    def calculate(self):
+        import math
+        currentText = self.display.toPlainText()
+        currentText.replace("\n", "").replace("√", "sqrt").replace("²", "**2").replace("X", "*")
+        try:
+            result = eval(currentText)
+            print(result)
+            self.display.setPlainText(str(result))
+        except (NameError, SyntaxError):
+            pass
+
+def openWindow(archive: str):
     app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet(archive)
+
     window = MainWindow()
     window.show()
     sys.exit(app.exec())

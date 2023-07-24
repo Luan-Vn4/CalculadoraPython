@@ -1,0 +1,22 @@
+MainWindow {
+    background-color: #403A52;
+}
+
+
+QPushButton {
+    width: 50px;
+    height: 50px;
+    font-size: 15px;
+    color: white;
+    background-color: rgba(102, 97, 117, 50);
+}
+
+QTextEdit {
+    font-size: 30px;
+    font-size-adjust: initial;
+    color: white;
+    background-color: #403A52;
+    border: 0px;
+    letter-spacing: ;
+}
+
