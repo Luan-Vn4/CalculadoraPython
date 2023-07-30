@@ -1,7 +1,6 @@
-MainWindow {
+QWidget {
     background-color: #403A52;
 }
-
 
 QPushButton {
     width: 50px;
@@ -18,5 +17,13 @@ QTextEdit {
     background-color: #403A52;
     border: 0px;
     letter-spacing: ;
+}
+
+QTabBar::tab {
+    background: solid rgba(102, 97, 117, 50);
+    color: white
+}
+QTabWidget::pane {
+    border: 2px solid rgba(102, 97, 117, 50);
 }
 
